@@ -5,6 +5,7 @@ import cv2
 from datetime import datetime
 
 from image_downloading import download_image
+from adjust_resolution import adjust_for_resolution
 
 file_dir = os.path.dirname(__file__)
 prefs_path = os.path.join(file_dir, 'preferences.json')
@@ -52,24 +53,24 @@ def run():
         os.mkdir(prefs['dir'])
 
     if (prefs['tl'] == '') or (prefs['br'] == '') or (prefs['zoom'] == ''):
-        messages = ['Top-left corner: ', 'Bottom-right corner: ', 'Zoom level: ']
+        messages = ['Center point (lat, lon): ', 'Zoom level: ']
         inputs = take_input(messages)
         if inputs is None:
             return
         else:
-            prefs['tl'], prefs['br'], prefs['zoom'] = inputs
+            prefs['tl'], prefs['zoom'] = inputs
 
-    lat1, lon1 = re.findall(r'[+-]?\d*\.\d+|d+', prefs['tl'])
-    lat2, lon2 = re.findall(r'[+-]?\d*\.\d+|d+', prefs['br'])
+    center_lat, center_lon = re.findall(r'[+-]?\d*\.\d+|d+', prefs['tl'])
 
     zoom = int(prefs['zoom'])
     channels = int(prefs['channels'])
     tile_size = int(prefs['tile_size'])
-    lat1 = float(lat1)
-    lon1 = float(lon1)
-    lat2 = float(lat2)
-    lon2 = float(lon2)
+    center_lat = float(center_lat)
+    center_lon = float(center_lon)
 
+    top_left, bottom_right = adjust_for_resolution(center_lat, center_lon, zoom)
+    lat1, lon1 = top_left
+    lat2, lon2 = bottom_right
     img = download_image(lat1, lon1, lat2, lon2, zoom, prefs['url'],
         prefs['headers'], tile_size, channels)
 
