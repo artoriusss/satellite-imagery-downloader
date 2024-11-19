@@ -2,8 +2,8 @@ import os
 import cv2
 from datetime import datetime
 
-from image_downloading import download_image
-from adjust_resolution import adjust_for_resolution
+from .image_downloading import download_image
+from .adjust_resolution import adjust_for_resolution
 
 def fetch_image(center_lat: float, center_lon: float, prefs: dict) -> None:
     """

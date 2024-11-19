@@ -4,9 +4,9 @@ import re
 import cv2
 from datetime import datetime
 
-from prefs import file_dir, prefs_path, default_prefs
-from image_downloading import download_image
-from adjust_resolution import adjust_for_resolution
+from .prefs import file_dir, prefs_path, default_prefs
+from .image_downloading import download_image
+from .adjust_resolution import adjust_for_resolution
 
 def take_input(messages):
     inputs = []

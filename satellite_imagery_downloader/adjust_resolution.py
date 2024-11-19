@@ -1,5 +1,5 @@
 import math 
-from image_downloading import image_size  
+from .image_downloading import image_size  
 
 def calculate_image_coords(lat, lon, w, h, z):
     R = (256 * 2**z) / 360
