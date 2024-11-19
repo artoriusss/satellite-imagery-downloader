@@ -7,10 +7,11 @@ setup(
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/artoriusss/satellite-imagery-downloader",
-    packages=find_packages(), 
+    packages=find_packages(include=["satellite_imagery_downloader", "satellite_imagery_downloader.src", "satellite_imagery_downloader.src.*"]),
+    package_dir={"satellite_imagery_downloader": "satellite_imagery_downloader"},  # Map top-level directory
     install_requires=[
         "numpy>=1.23.2",
-        "opencv_python>=4.6.0.66",
+        "opencv-python>=4.6.0.66",
         "requests>=2.28.1"
     ],
     classifiers=[
