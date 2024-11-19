@@ -7,7 +7,7 @@ setup(
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/artoriusss/satellite-imagery-downloader",
-    packages=find_packages(include=["satellite_imagery_downloader", "satellite_imagery_downloader.src", "satellite_imagery_downloader.src.*"]),
+    packages=find_packages(include=["satellite_imagery_downloader", "satellite_imagery_downloader.*"]),
     package_dir={"satellite_imagery_downloader": "satellite_imagery_downloader"},  # Map top-level directory
     install_requires=[
         "numpy>=1.23.2",
