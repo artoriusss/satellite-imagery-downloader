@@ -5,6 +5,7 @@ test/
 .vscode/
 t.py
 preferences.json
+.DS_Store
 
 # .gitignore from https://github.com/github/gitignore/blob/main/Python.gitignore
 
